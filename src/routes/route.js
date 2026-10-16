@@ -1,18 +1,19 @@
+import {homePage, sobrePage, antigoPage, adminPage, contatoPage, notfoundPage} from "../views/view.js"
 export function route(req, res){
 
     if (req.method === "GET" && req.url === "/"){
         res.writeHead(200, {"Content-Type": "text/html; charset=utf-8"})
-        res.end()
+        res.end(homePage())
         return
     }
     if (req.method === "GET" && req.url === "/sobre"){
         res.writeHead(200, {"Content-Type": "text/html"})
-        res.end()
+        res.end(sobrePage())
         return
     }
     if (req.method === "GET" && req.url === "/antigo"){
         res.writeHead(301, {"location": "/sobre"})
-        res.end()
+        res.end(antigoPage())
         return
     }
     //nesse trecho foi utilizado IA
@@ -32,14 +33,14 @@ export function route(req, res){
     }
     if (req.method === "GET" && req.url === "/admin"){
         res.writeHead(403, {"Content-Type": "text/html"})
-        res.end()
+        res.end(adminPage())
         return
     }
     //trecho feito com IA
     if (req.url === "/contato"){
         if(req.method === "GET"){
         res.writeHead(403, {"Content-Type": "text/html"})
-        res.end()
+        res.end(contatoPage())
         }else{
             res.writeHead(405, {'Content-Type': 'text/plain; charset=utf-8',
         'Allow': 'GET'})
@@ -49,7 +50,7 @@ export function route(req, res){
     }
     else{
     res.writeHead(404, {"Content-type" : "text/html"});
-    res.end();
+    res.end(notfoundPage());
     return;
     }
 }
